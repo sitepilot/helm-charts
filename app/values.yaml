@@ -6,7 +6,7 @@ pool: h2m57
 localPath: null
 
 image:
-  repository: sitepilot/runtime
+  repository: ghcr.io/sitepilot/runtime
   pullPolicy: Always
   tag: latest
 
