@@ -44,30 +44,49 @@ spec:
           volumeMounts:
             - mountPath: /opt/sitepilot/app
               name: app-data
+              {{- if or (.Values.pool) (.Values.localPath) }}
               subPath: apps/{{ include "app.name" . }}
+              {{- else }}
+              subPath: data
+              {{- end }}
             - name: app-config
               mountPath: /opt/sitepilot/config
       affinity:
+      {{- if .Values.pool }}
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchExpressions:
                   - key: "pool.sitepilot.io/name"
                     operator: "In"
-                    values: [
-                      "{{ .Values.pool }}"
-                    ]
+                    values:
+                      - "{{ .Values.pool }}"
               topologyKey: "kubernetes.io/hostname"
+      {{- end }}
+      {{- if .Values.node }}
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - "{{ .Values.node }}"
+      {{- end }}
       volumes:
         {{- if .Values.localPath }}
         - name: app-data
           hostPath:
             path: {{ .Values.localPath }}
             type: Directory
-        {{- else }}
+        {{- else if .Values.pool }}
         - name: app-data
           persistentVolumeClaim:
             claimName: pool-{{ .Values.pool }}
+        {{- else }}
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: "{{ include "app.fullName" . }}"
         {{- end }}
         - name: app-config
           secret:

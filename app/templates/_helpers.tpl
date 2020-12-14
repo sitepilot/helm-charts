@@ -5,7 +5,11 @@
 
 {{/* -------- Full Name -------- */}}
 {{- define "app.fullName" -}}
-{{- printf "%s-%s-%s" .Values.type .Values.pool .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- if .Values.pool }}
+    {{- printf "%s-%s-%s" .Values.type .Values.pool .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- else }}
+    {{- printf "%s-%s" .Values.type .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- end }}
 {{- end }}
 
 {{/* -------- Chart Name -------- */}}
@@ -27,9 +31,11 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.sitepilot.io/name: {{ include "app.name" . }}
-app.sitepilot.io/pool: {{ .Values.pool }}
 app.sitepilot.io/full-name: {{ include "app.fullName" . }}
 app.sitepilot.io/chart-name: {{ include "app.chartName" . }}
+{{- if .Values.pool }}
+app.sitepilot.io/pool: {{ .Values.pool }}
+{{- end }}
 {{- end }}
 
 {{/* -------- Selector Labels -------- */}}

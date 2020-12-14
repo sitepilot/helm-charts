@@ -1,0 +1,15 @@
+---
+{{- if not .Values.pool }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "{{ include "app.fullName" . }}"
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "{{ .Values.storage }}"
+{{- end }}

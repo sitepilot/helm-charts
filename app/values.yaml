@@ -1,9 +1,13 @@
 ---
 type: app
 
-pool: h2m57
+pool: null
+
+node: null
 
 localPath: null
+
+storage: 5Gi
 
 image:
   repository: ghcr.io/sitepilot/runtime
@@ -17,8 +21,7 @@ service:
 ingress:
   enabled: true
   rootDomain: "sitepilot.dev"
-  annotations:
-    kubernetes.io/ingress.class: nginx
+  annotations: {}
 #  hosts:
 #    - host: 'domain.com'
 
