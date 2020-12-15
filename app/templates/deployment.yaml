@@ -44,10 +44,10 @@ spec:
           volumeMounts:
             - mountPath: /opt/sitepilot/app
               name: app-data
-              {{- if or (.Values.pool) (.Values.localPath) }}
-              subPath: apps/{{ include "app.name" . }}
+              {{- if .Values.pool }}
+              subPath: apps/{{ include "app.name" . }}              
               {{- else }}
-              subPath: data
+              subPath: {{ include "app.name" . }}
               {{- end }}
             - name: app-config
               mountPath: /opt/sitepilot/config
