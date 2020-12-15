@@ -8,7 +8,7 @@
 {{- if .Values.pool }}
     {{- printf "%s-%s-%s" .Values.type .Values.pool .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
-    {{- printf "%s-%s" .Values.type .Release.Name | trunc 63 | trimSuffix "-" }}
+    {{- printf "%s" .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- end }}
 {{- end }}
 
