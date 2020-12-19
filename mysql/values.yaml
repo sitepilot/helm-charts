@@ -1,5 +1,7 @@
 node: undefined
 
+nodePort: null
+
 localPath: /opt/sitepilot/services/mysql
 
 image:

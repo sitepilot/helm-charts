@@ -11,5 +11,8 @@ spec:
       targetPort: mysql
       protocol: TCP
       name: mysql
+      {{- if .Values.nodePort }}
+      nodePort: {{ .Values.nodePort }}
+      {{- end }}
   selector:
     {{- include "mysql.selectorLabels" . | nindent 4 }}
