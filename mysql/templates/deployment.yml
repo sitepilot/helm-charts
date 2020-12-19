@@ -25,17 +25,16 @@ spec:
             - name: mysql
               containerPort: 3306
               protocol: TCP
-              hostPort: 3306
           livenessProbe:
             tcpSocket:
               port: 3306
             initialDelaySeconds: 5
             periodSeconds: 5
-          #readinessProbe:
-           # tcpSocket:
-           #   port: 3306
-           # initialDelaySeconds: 5
-           # periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 5
+            periodSeconds: 10
           env:
             - name: "MYSQL_DATABASE"
               valueFrom:
