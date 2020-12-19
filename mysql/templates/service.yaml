@@ -5,7 +5,11 @@ metadata:
   labels:
     {{- include "mysql.labels" . | nindent 4 }}
 spec:
+  {{- if .Values.nodePort }}
+  type: NodePort
+  {{- else }}
   type: ClusterIP
+  {{- end }}
   ports:
     - port: 3306
       targetPort: mysql
