@@ -1,0 +1,75 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mysql.fullName" . }}
+  labels:
+    {{- include "mysql.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "mysql.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      labels:
+        {{- include "mysql.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+          env:
+            - name: "MYSQL_DATABASE"
+              valueFrom:
+                secretKeyRef:
+                  key:  database
+                  name: {{ include "mysql.fullName" . }}
+            - name: "MYSQL_USER"
+              valueFrom:
+                secretKeyRef:
+                  key:  username
+                  name: {{ include "mysql.fullName" . }}
+            - name: "MYSQL_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  key:  password
+                  name: {{ include "mysql.fullName" . }}
+            - name: "MYSQL_ROOT_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  key:  rootPassword
+                  name: {{ include "mysql.fullName" . }}
+          volumeMounts:
+            - mountPath: /bitnami/mysql/data
+              name: mysql-data
+              subPath: {{ include "mysql.name" . }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: mysql-data
+          hostPath:
+            path: {{ .Values.localPath }}
+            type: DirectoryOrCreate
+            affinity:
+      {{- if .Values.node }}
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - "{{ .Values.node }}"
+      {{- end }}
