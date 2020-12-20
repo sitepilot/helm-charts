@@ -1,0 +1,21 @@
+node: undefined
+
+nodePort: null
+
+localPath: /opt/sitepilot/services/redis
+
+image:
+  repository: bitnami/redis
+  pullPolicy: IfNotPresent
+  tag: "6.0"
+
+auth:
+  password: secret
+
+resources:
+  # limits:
+  #  cpu: 500m
+  #  memory: 256Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
