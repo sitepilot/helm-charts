@@ -67,7 +67,6 @@ spec:
           hostPath:
             path: {{ .Values.localPath }}
             type: DirectoryOrCreate
-            affinity:
       {{- if .Values.node }}
       affinity:
         nodeAffinity:
