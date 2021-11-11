@@ -1,0 +1,10 @@
+---------------------
+{{- if .Values.ingress.enabled }}
+Runtime deployed, access the application by navigating to:
+{{- range $host := .Values.ingress.hosts }}
+{{- range .paths }}
+http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
+{{- end }}
+{{- end }}
+{{- end }}
+---------------------

@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mariadb.name" . }}
+  labels:
+    {{- include "mariadb.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "mariadb.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mariadb.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          env:
+            - name: "MARIADB_USER"
+              value: {{ .Values.config.userName | quote }}
+            - name: "MARIADB_DATABASE"
+              value: {{ .Values.config.database | quote }}
+            - name: "MARIADB_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  key: userPassword
+                  name: {{ include "mariadb.name" . }}
+            - name: "MARIADB_ROOT_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  key: rootPassword
+                  name: {{ include "mariadb.name" . }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: data
+              subPath: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "mariadb.name" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
