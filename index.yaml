@@ -14,6 +14,16 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: "10.6"
+    created: "2021-11-11T15:17:50.383568236Z"
+    description: MariaDB chart for the Sitepilot platform.
+    digest: e86ffee0fa4ca3f6ade92f091270b36d71af3b3d0cced4faec74625f54e7647f
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/mariadb-1.0.1/mariadb-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: "10.6"
     created: "2021-11-11T09:02:59.434619876Z"
     description: MariaDB chart for the Sitepilot platform.
     digest: 57aedc245b2d44257578c28938eada610ade16bcc9419c33e2c964384a9c6a71
@@ -44,4 +54,4 @@ entries:
     urls:
     - https://github.com/sitepilot/helm-charts/releases/download/runtime-1.0.1/runtime-1.0.1.tgz
     version: 1.0.1
-generated: "2021-11-11T09:02:59.684687578Z"
+generated: "2021-11-11T15:17:50.383577536Z"
