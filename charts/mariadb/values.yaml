@@ -1,5 +1,5 @@
 config:
-  database: "autopilot"
+  database: "stack"
   userName: "captain"
   userPassword: "secret"
   rootPassword: "supersecret"
