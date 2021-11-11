@@ -1,0 +1,47 @@
+apiVersion: v1
+entries:
+  mailhog:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2021-11-11T09:02:59.286434046Z"
+    description: Mailhog chart for the Sitepilot platform.
+    digest: 5cb47b82696a3cf97d9a294ffc289d738b82ac362bf0ea84840033e8d4d3f077
+    name: mailhog
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/mailhog-1.0.0/mailhog-1.0.0.tgz
+    version: 1.0.0
+  mariadb:
+  - apiVersion: v2
+    appVersion: "10.6"
+    created: "2021-11-11T09:02:59.434619876Z"
+    description: MariaDB chart for the Sitepilot platform.
+    digest: 57aedc245b2d44257578c28938eada610ade16bcc9419c33e2c964384a9c6a71
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/mariadb-1.0.0/mariadb-1.0.0.tgz
+    version: 1.0.0
+  phpmyadmin:
+  - apiVersion: v2
+    appVersion: "5.1"
+    created: "2021-11-11T09:02:59.565632469Z"
+    description: phpMyAdmin chart for the Sitepilot platform.
+    digest: a9a6feda5e72a8e9c96aff7ac508e22794d58cc46a0d0d258f83c992ee73bfed
+    name: phpmyadmin
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/phpmyadmin-1.0.0/phpmyadmin-1.0.0.tgz
+    version: 1.0.0
+  runtime:
+  - apiVersion: v2
+    appVersion: "8.0"
+    created: "2021-11-11T09:02:59.684678977Z"
+    description: Runtime chart for the Sitepilot platform.
+    digest: 7e1001987862024381ecdd1dfbdd676f932b9d6eb84444d5ece9dce143836454
+    name: runtime
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/runtime-1.0.1/runtime-1.0.1.tgz
+    version: 1.0.1
+generated: "2021-11-11T09:02:59.684687578Z"
