@@ -26,20 +26,28 @@ spec:
               containerPort: 3306
               protocol: TCP
           env:
+            {{- if .Values.config.userName }}
             - name: "MARIADB_USER"
               value: {{ .Values.config.userName | quote }}
+            {{- end }}
+            {{- if .Values.config.database }}
             - name: "MARIADB_DATABASE"
               value: {{ .Values.config.database | quote }}
+            {{- end }}
+            {{- if .Values.config.userPassword }}
             - name: "MARIADB_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   key: userPassword
                   name: {{ include "mariadb.name" . }}
+            {{- end }}
+            {{- if .Values.config.rootPassword }}
             - name: "MARIADB_ROOT_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   key: rootPassword
                   name: {{ include "mariadb.name" . }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:

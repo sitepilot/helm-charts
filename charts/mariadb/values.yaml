@@ -1,8 +1,8 @@
 config:
-  database: "stack"
-  userName: "captain"
-  userPassword: "secret"
-  rootPassword: "supersecret"
+  database: ""
+  userName: ""
+  userPassword: ""
+  rootPassword: ""
 
 image:
   repository: mariadb
