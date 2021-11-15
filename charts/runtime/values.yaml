@@ -4,12 +4,11 @@ config:
   userPassword: ""
   backupPassword: ""
   basicAuth: ""
-  authorizedKeys: ""
 
 image:
   repository: ghcr.io/sitepilot/runtime
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: "8.0"
 
 volume:
   storage: 5G

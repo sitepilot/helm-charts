@@ -1,4 +1,3 @@
----
 {{- if .Values.config.basicAuth }}
 apiVersion: v1
 kind: Secret
@@ -7,13 +6,5 @@ metadata:
   labels:
     {{- include "runtime.labels" . | nindent 4 }}
 data:
-  users: {{ .Values.config.basicAuth | b64enc }}
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: {{ include "runtime.name" . }}-auth
-spec:
-  basicAuth:
-    secret: {{ include "runtime.name" . }}-auth
+  auth: {{ .Values.config.basicAuth | b64enc }}
 {{- end }}

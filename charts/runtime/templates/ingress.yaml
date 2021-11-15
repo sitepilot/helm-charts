@@ -7,9 +7,6 @@ metadata:
   labels:
     {{- include "runtime.labels" . | nindent 4 }}
   annotations:
-  {{- if .Values.config.basicAuth }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ include "runtime.name" . }}-auth@kubernetescrd"
-  {{- end }}
   {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
