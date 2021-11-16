@@ -12,6 +12,9 @@ image:
 volume:
   storage: 10G
 
+service:
+  type: ClusterIP
+
 resources: {}
   # limits:
   #   cpu: 100m
