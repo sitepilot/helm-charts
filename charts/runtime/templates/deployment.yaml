@@ -55,14 +55,14 @@ spec:
           volumeMounts:
             - mountPath: /home/runtime
               name: data
-              {{- if not .Values.config.localPath }}
+              {{- if not .Values.config.nodePath }}
               subPath: home
               {{- end }}
       volumes:
-        {{- if .Values.config.localPath }}
+        {{- if .Values.config.nodePath }}
         - name: data
           hostPath:
-            path: {{ .Values.config.localPath }}
+            path: {{ .Values.config.nodePath }}
             type: DirectoryOrCreate
         {{- else }}
         - name: data

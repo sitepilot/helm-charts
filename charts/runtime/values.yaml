@@ -4,7 +4,7 @@ config:
   userPassword: ""
   backupPassword: ""
   basicAuth: ""
-  localPath: ""
+  nodePath: ""
 
 image:
   repository: ghcr.io/sitepilot/runtime
