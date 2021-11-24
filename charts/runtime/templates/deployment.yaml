@@ -57,9 +57,16 @@ spec:
               name: data
               subPath: home
       volumes:
+        {{- if .Values.config.volumePath }}
+        - name: data
+          hostPath:
+            path: {{ .Values.config.volumePath }}
+            type: DirectoryOrCreate
+        {{- else }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "runtime.name" . }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

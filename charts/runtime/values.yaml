@@ -4,6 +4,7 @@ config:
   userPassword: ""
   backupPassword: ""
   basicAuth: ""
+  volumePath: ""
 
 image:
   repository: ghcr.io/sitepilot/runtime
