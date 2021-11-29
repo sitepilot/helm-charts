@@ -6,6 +6,7 @@ config:
   nodePath: ""
   php: ""
   msmtp: ""
+  supervisor: ""
 
 image:
   repository: ghcr.io/sitepilot/runtime

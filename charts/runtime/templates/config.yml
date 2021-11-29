@@ -7,3 +7,4 @@ metadata:
 data:
   php.ini: {{ .Values.config.php | quote }}
   msmtp.conf: {{ .Values.config.msmtp | quote }}
+  supervisor.conf: {{ .Values.config.supervisor | quote }}
