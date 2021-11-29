@@ -1,8 +1,5 @@
 replicaCount: 1
 
-config:
-  basicAuth: ""
-
 image:
   repository: mailhog/mailhog
   pullPolicy: IfNotPresent

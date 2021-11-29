@@ -7,9 +7,6 @@ metadata:
   labels:
     {{- include "mailhog.labels" . | nindent 4 }}
   annotations:
-  {{- if .Values.config.basicAuth }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ include "mailhog.name" . }}-auth@kubernetescrd"
-  {{- end }}
   {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}    
