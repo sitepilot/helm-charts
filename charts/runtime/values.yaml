@@ -3,8 +3,8 @@ replicaCount: 1
 config:
   userPassword: ""
   backupPassword: ""
-  basicAuth: ""
   nodePath: ""
+  configMapName: ""
 
 image:
   repository: ghcr.io/sitepilot/runtime

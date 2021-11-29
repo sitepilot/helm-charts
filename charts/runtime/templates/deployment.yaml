@@ -39,7 +39,7 @@ spec:
           #    port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          env:          
+          env:
             - name: "RUNTIME_USER_NAME"
               value: {{ .Release.Name | quote }}
             - name: "RUNTIME_USER_PASSWORD"
@@ -53,11 +53,15 @@ spec:
                   key: backupPassword
                   name: {{ include "runtime.name" . }}
           volumeMounts:
-            - mountPath: /home/runtime
-              name: data
+            - name: data
+              mountPath: /home/runtime
               {{- if not .Values.config.nodePath }}
               subPath: home
               {{- end }}
+            {{- if .Values.config.configMapName }}  
+            - name: config
+              mountPath: /opt/container/custom
+            {{- end }}
       volumes:
         {{- if .Values.config.nodePath }}
         - name: data
@@ -68,6 +72,11 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "runtime.name" . }}
+        {{- end }}
+        {{- if .Values.config.configMapName }}  
+        - name: config
+          configMap:
+            name: {{ .Values.config.configMapName | quote }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
