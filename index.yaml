@@ -3,6 +3,16 @@ entries:
   mailhog:
   - apiVersion: v2
     appVersion: 1.0.1
+    created: "2021-11-29T12:28:42.58993476Z"
+    description: Mailhog chart for the Sitepilot platform.
+    digest: dcb14d4d9c6a070a8914cfb0880fb4808cfd8a6a58256202399b426243732e3d
+    name: mailhog
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/mailhog-1.0.1/mailhog-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.1
     created: "2021-11-11T09:02:59.286434046Z"
     description: Mailhog chart for the Sitepilot platform.
     digest: 5cb47b82696a3cf97d9a294ffc289d738b82ac362bf0ea84840033e8d4d3f077
@@ -124,4 +134,4 @@ entries:
     urls:
     - https://github.com/sitepilot/helm-charts/releases/download/runtime-1.0.1/runtime-1.0.1.tgz
     version: 1.0.1
-generated: "2021-11-29T12:20:57.637827229Z"
+generated: "2021-11-29T12:28:42.58997356Z"
