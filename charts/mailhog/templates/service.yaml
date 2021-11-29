@@ -11,5 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 1025
+      targetPort: smtp
+      protocol: TCP
+      name: smtp
   selector:
     {{- include "mailhog.selectorLabels" . | nindent 4 }}

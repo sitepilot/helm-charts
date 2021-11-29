@@ -26,6 +26,9 @@ spec:
             - name: http
               containerPort: 8025
               protocol: TCP
+            - name: smtp
+              containerPort: 1025
+              protocol: TCP
           livenessProbe:
             httpGet:
               path: /
