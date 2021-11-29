@@ -4,7 +4,8 @@ config:
   userPassword: ""
   backupPassword: ""
   nodePath: ""
-  configMapName: ""
+  php: ""
+  msmtp: ""
 
 image:
   repository: ghcr.io/sitepilot/runtime

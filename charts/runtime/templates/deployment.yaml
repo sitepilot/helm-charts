@@ -58,10 +58,8 @@ spec:
               {{- if not .Values.config.nodePath }}
               subPath: home
               {{- end }}
-            {{- if .Values.config.configMapName }}  
             - name: config
               mountPath: /opt/container/custom
-            {{- end }}
       volumes:
         {{- if .Values.config.nodePath }}
         - name: data
@@ -72,12 +70,10 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "runtime.name" . }}
-        {{- end }}
-        {{- if .Values.config.configMapName }}  
+        {{- end }} 
         - name: config
           configMap:
-            name: {{ .Values.config.configMapName | quote }}
-        {{- end }}
+            name: {{ include "runtime.name" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
