@@ -1,0 +1,10 @@
+{{- if .Values.config.basicAuth }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "mailhog.name" . }}-auth
+  labels:
+    {{- include "mailhog.labels" . | nindent 4 }}
+data:
+  auth: {{ .Values.config.basicAuth | b64enc }}
+{{- end }}
