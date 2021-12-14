@@ -3,6 +3,16 @@ entries:
   mailhog:
   - apiVersion: v2
     appVersion: 1.0.1
+    created: "2021-12-14T12:56:47.834973427Z"
+    description: Mailhog chart for the Sitepilot platform.
+    digest: 488c894229542ecbc982f22b87093815a908e85e56df533b2c8805d3fb8a07da
+    name: mailhog
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/mailhog-1.0.2/mailhog-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.1
     created: "2021-11-29T12:28:42.58993476Z"
     description: Mailhog chart for the Sitepilot platform.
     digest: dcb14d4d9c6a070a8914cfb0880fb4808cfd8a6a58256202399b426243732e3d
@@ -65,6 +75,16 @@ entries:
   phpmyadmin:
   - apiVersion: v2
     appVersion: "5.1"
+    created: "2021-12-14T12:56:47.960723649Z"
+    description: phpMyAdmin chart for the Sitepilot platform.
+    digest: 3cd7ca7021eb7789c7ec568df9bff72d12c05d1edd7916239ce238fae74a569d
+    name: phpmyadmin
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/phpmyadmin-1.0.1/phpmyadmin-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: "5.1"
     created: "2021-11-11T09:02:59.565632469Z"
     description: phpMyAdmin chart for the Sitepilot platform.
     digest: a9a6feda5e72a8e9c96aff7ac508e22794d58cc46a0d0d258f83c992ee73bfed
@@ -74,6 +94,16 @@ entries:
     - https://github.com/sitepilot/helm-charts/releases/download/phpmyadmin-1.0.0/phpmyadmin-1.0.0.tgz
     version: 1.0.0
   runtime:
+  - apiVersion: v2
+    appVersion: custom
+    created: "2021-12-14T12:56:48.080946371Z"
+    description: Runtime chart for the Sitepilot platform.
+    digest: 1aaa97042d00713c96f794454d89ee90f2e2231a424a94514e16e616bd501533
+    name: runtime
+    type: application
+    urls:
+    - https://github.com/sitepilot/helm-charts/releases/download/runtime-1.0.9/runtime-1.0.9.tgz
+    version: 1.0.9
   - apiVersion: v2
     appVersion: custom
     created: "2021-11-29T13:17:14.936079515Z"
@@ -154,4 +184,4 @@ entries:
     urls:
     - https://github.com/sitepilot/helm-charts/releases/download/runtime-1.0.1/runtime-1.0.1.tgz
     version: 1.0.1
-generated: "2021-11-29T13:17:14.936128316Z"
+generated: "2021-12-14T12:56:48.081014971Z"
