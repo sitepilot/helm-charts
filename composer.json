@@ -1,15 +1,11 @@
 {
     "name": "sitepilot/helm-charts",
     "description": "Helm charts used for deploying sites to the Sitepilot managed hosting platform.",
-    "type": "laravel-library",
     "license": "MIT",
     "authors": [
         {
             "name": "Nick Jansen",
             "email": "n.jansen@sitepilot.io"
         }
-    ],
-    "require": {
-        "composer/installers": "~1.0"
-    }
+    ]
 }
