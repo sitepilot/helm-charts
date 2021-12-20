@@ -28,6 +28,8 @@ ingress:
         - path: /
   tls: []
 
+extraEnvVars: []
+
 resources:
   {}
   # limits:

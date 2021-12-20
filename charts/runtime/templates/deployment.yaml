@@ -29,14 +29,14 @@ spec:
             - name: ssh
               containerPort: 22
               protocol: TCP
-          #livenessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          #readinessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
+          livenessProbe:
+            httpGet:
+              path: /sitepilot/ping/
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /sitepilot/ping/
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
@@ -52,6 +52,10 @@ spec:
                 secretKeyRef:
                   key: backupPassword
                   name: {{ include "runtime.name" . }}
+            {{- range .Values.extraEnvVars }}
+            - name: {{ .name | quote }}
+              value: {{ .value | quote }}
+            {{- end }}
           volumeMounts:
             - name: data
               mountPath: /home/runtime
@@ -70,7 +74,7 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "runtime.name" . }}
-        {{- end }} 
+        {{- end }}
         - name: config
           configMap:
             name: {{ include "runtime.name" . }}
