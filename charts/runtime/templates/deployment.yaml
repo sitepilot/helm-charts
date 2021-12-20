@@ -18,6 +18,7 @@ spec:
       labels:
         {{- include "runtime.selectorLabels" . | nindent 8 }}
     spec:
+      enableServiceLinks: false
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
