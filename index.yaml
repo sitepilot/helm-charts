@@ -96,16 +96,6 @@ entries:
   runtime:
   - apiVersion: v2
     appVersion: custom
-    created: "2021-12-22T15:07:10.884038883Z"
-    description: Runtime chart for the Sitepilot platform.
-    digest: af3063e7a346f11dbf8f75e6e5710b234f1b50c854e6c9a698d589756dbf00a5
-    name: runtime
-    type: application
-    urls:
-    - https://github.com/sitepilot/helm-charts/releases/download/runtime-1.0.14/runtime-1.0.14.tgz
-    version: 1.0.14
-  - apiVersion: v2
-    appVersion: custom
     created: "2021-12-22T15:26:09.783614817Z"
     description: Runtime chart for the Sitepilot platform.
     digest: 3b5a55ec8d557afbb11cc3cad246a2d252885d165bee9d99ccd8c4c507aeb70e
