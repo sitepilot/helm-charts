@@ -1,10 +1,8 @@
-kind: ConfigMap
 apiVersion: v1
+kind: Secret
 metadata:
-  name: {{ include "runtime.name" . }}
+  name: {{ include "runtime.name" . }}-config
   labels:
     {{- include "runtime.labels" . | nindent 4 }}
 data:
-  php.ini: {{ .Values.config.php | quote }}
-  msmtp.conf: {{ .Values.config.msmtp | quote }}
-  supervisor.conf: {{ .Values.config.supervisor | quote }}
+  runtime: {{ toYaml .Values.runtime | b64enc }}

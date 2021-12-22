@@ -1,12 +1,10 @@
 replicaCount: 1
 
+runtime: {}
+
 config:
   userPassword: ""
-  backupPassword: ""
   nodePath: ""
-  php: ""
-  msmtp: ""
-  supervisor: ""
   basicAuth: ""
 
 image:

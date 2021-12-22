@@ -12,6 +12,7 @@ spec:
   template:
     metadata:
       annotations:
+        runtime.sitepilot.io/checksum: {{ include (print $.Template.BasePath "/config.yml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -48,11 +49,6 @@ spec:
                 secretKeyRef:
                   key: userPassword
                   name: {{ include "runtime.name" . }}
-            - name: "RESTIC_PASSWORD"
-              valueFrom:
-                secretKeyRef:
-                  key: backupPassword
-                  name: {{ include "runtime.name" . }}
             {{- range .Values.extraEnvVars }}
             - name: {{ .name | quote }}
               value: {{ .value | quote }}
@@ -63,8 +59,9 @@ spec:
               {{- if not .Values.config.nodePath }}
               subPath: home
               {{- end }}
-            - name: config
-              mountPath: /opt/container/custom
+            - mountPath: /opt/runtime/config.yml
+              name: config
+              subPath: runtime
       volumes:
         {{- if .Values.config.nodePath }}
         - name: data
@@ -76,9 +73,12 @@ spec:
           persistentVolumeClaim:
             claimName: {{ include "runtime.name" . }}
         {{- end }}
+        - name: secret
+          secret:
+            secretName: {{ include "runtime.name" . }}
         - name: config
-          configMap:
-            name: {{ include "runtime.name" . }}
+          secret:
+            secretName: {{ include "runtime.name" . }}-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
