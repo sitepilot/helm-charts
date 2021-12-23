@@ -19,6 +19,7 @@ spec:
       labels:
         {{- include "runtime.selectorLabels" . | nindent 8 }}
     spec:
+      hostname: {{ .Release.Name | quote }}
       enableServiceLinks: false
       containers:
         - name: {{ .Chart.Name }}
